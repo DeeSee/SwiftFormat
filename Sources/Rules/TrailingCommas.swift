@@ -21,9 +21,14 @@ public extension FormatRule {
                 formatter.addOrRemoveTrailingComma(beforeEndOfScope: i, trailingCommaSupported: true, isCollection: true)
                 return
 
-            case .subscript, .captureList, .functionCall, .parameterList:
+            case .subscript, .functionCall, .parameterList:
                 let trailingCommaSupported = formatter.options.swiftVersion >= "6.1"
                 formatter.addOrRemoveTrailingComma(beforeEndOfScope: i, trailingCommaSupported: trailingCommaSupported)
+                return
+
+            case .captureList:
+                // Trailing commas in closure capture lists are not supported by the compiler yet.
+                formatter.addOrRemoveTrailingComma(beforeEndOfScope: i, trailingCommaSupported: false)
                 return
 
             case .arrayType, .dictionaryType, .throwsType:

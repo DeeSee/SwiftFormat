@@ -1438,7 +1438,7 @@ final class TrailingCommasTests: XCTestCase {
         testFormatting(for: input, output, rule: .trailingCommas, options: options)
     }
 
-    func testTrailingCommasAddedToCaptureList() {
+    func testTrailingCommasNotAddedToCaptureListSwift6_1() {
         let input = """
         { [
             capturedValue1,
@@ -1446,15 +1446,8 @@ final class TrailingCommasTests: XCTestCase {
         ] in
         }
         """
-        let output = """
-        { [
-            capturedValue1,
-            capturedValue2,
-        ] in
-        }
-        """
         let options = FormatOptions(trailingCommas: .always, swiftVersion: "6.1")
-        testFormatting(for: input, output, rule: .trailingCommas, options: options)
+        testFormatting(for: input, rule: .trailingCommas, options: options)
     }
 
     func testTrailingCommasRemovedFromSingleElementCaptureList() {
@@ -3038,7 +3031,7 @@ final class TrailingCommasTests: XCTestCase {
         testFormatting(for: input, output, rule: .trailingCommas, options: options)
     }
 
-    func testTrailingCommasAddedToCaptureListSwift6_2() {
+    func testTrailingCommasNotAddedToCaptureListSwift6_2() {
         let input = """
         { [
             capturedValue1,
@@ -3046,15 +3039,8 @@ final class TrailingCommasTests: XCTestCase {
         ] in
         }
         """
-        let output = """
-        { [
-            capturedValue1,
-            capturedValue2,
-        ] in
-        }
-        """
         let options = FormatOptions(trailingCommas: .always, swiftVersion: "6.2")
-        testFormatting(for: input, output, rule: .trailingCommas, options: options)
+        testFormatting(for: input, rule: .trailingCommas, options: options)
     }
 
     func testTrailingCommasRemovedFromSingleElementCaptureListSwift6_2() {
